@@ -85,7 +85,7 @@ body{
   z-index: 10;
   box-shadow: 0px 3px 0px #ddd; 
 }
-svg{
+.menu svg{
   fill:#333;
   width: 25px;
   height: 25px;

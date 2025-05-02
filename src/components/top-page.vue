@@ -9,7 +9,7 @@ import { useRoute } from 'vue-router';
 const route = useRoute()
 
 const nameView = {
-    home: 'Pagina Inicial',
+    home: 'Pagina Inícial',
     alunos: 'Alunos',
     professores: 'Professores',
     matricula: 'Matrícula'
@@ -28,7 +28,7 @@ const nameView = {
     z-index: 9;
 }
 h1{
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 700;
     color: #fff
 }
