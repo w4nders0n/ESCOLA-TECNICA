@@ -1,5 +1,13 @@
 <template>
     <div class="professores">
-      <h1>This is an about page</h1>
+      <TabelaMedia />
     </div>
   </template>
+<script>
+import TabelaMedia from '@/components/tabelaMedia.vue';
+export default{
+  components:{
+    TabelaMedia
+  }
+}
+</script>
