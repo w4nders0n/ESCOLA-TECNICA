@@ -8,20 +8,21 @@
                 </svg></button>
             </div>
 
-            <div class="materia-title">Inserir notas</div>
+            <h1>Inserir notas</h1>
 
             <div class="content">
                 <div class="aluno-nome" v-if="alunoSelecionado">
-                    <h3>Aluno: {{ alunoSelecionado.nome }}</h3>
+                    <h4>Aluno: {{ alunoSelecionado.nome }}</h4>
                 </div>
             <div class="tabela">
                 <form action="#" method="post" class="form">
-                    <table class="table table-striped-columns">
+                    <table class="table table-striped-columns text center">
                         <thead>
                             <th>sem</th>
                             <th>1ª Aval</th>
                             <th>2ª Aval</th>
                             <th>3ª Aval</th>
+                            <th>Status</th>
                         </thead>
                         <tbody>
                             <tr v-for="(aluno, index) in alunos" :key="index">
@@ -56,21 +57,10 @@
                                     @input="validarNota($event, aluno, 'nota3')"
                                     placeholder="3ª Nota"/>
                                 </td>
+                                <td :class="statusClasse(aluno)">{{ statusTexto (aluno) }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="status">
-                        <table class="table table-striped-columns">
-                            <thead>
-                            <tr>Status</tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(aluno, index) in alunos" :key="'status' + index">
-                                    <td :class="statusClasse(aluno)" >{{ statusTexto (aluno) }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </form>
                 <button class="btn-primary btn">Enviar</button>
             </div>
@@ -144,20 +134,88 @@ font-family: 'Inter',sans-serif;
     align-items: center;
     justify-content: center;
     width:80%;
+    padding: 15px 15px;
     position: relative;
     height: 25rem;
-    background-color: bisque;
-    padding: 30px 15px;
+    background-color: #f2f2f3;
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 8px #d1d1d1;
+
+    &{
+        .pesquisa{
+            display: flex;
+            gap: 3px;
+        }
+        h1{
+            font-weight: 700;
+            font-family: 'Poppins';
+            margin: 15px auto 30px;
+        }
+    }
 }
 .tabela{
     display:flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     width: 100%;
     height: 100%;
+    text-align: center;
+
+    &{
+        .btn{
+            width: 200px;
+        }
+        .form{
+            display: flex;
+            margin: 0 auto;
+            width:80%;
+            background-color: #fff;
+
+            &{
+                input{
+                    border: none;
+                    font-weight: 700;
+                    background: transparent;
+                    color: #1b4332;
+                    text-align: center;
+                }
+            }
+        }
+        .aprov{
+            background-color: #c7f9cc;
+            color: #1b4332;
+            font-weight: bold;
+        }
+        .reprov{
+            background-color: #ffccd5;
+            color: #6b0103;
+            font-weight: bold;
+        }
+        .cursando{
+            background-color: #e9ecef;
+            color: #6c757d;
+            font-weight: bold;
+        }
+
+    }
 }
-.form{
-    display: flex;
-    margin: 0 auto;
+
+@media(max-width:768px){
+    .tabela{
+        width:100%;
+        height: auto;
+        &{
+            .form{
+                overflow-x: scroll;
+                width: 100%;
+            }
+            .btn{
+                margin: 15px;
+            }
+        }
+    }
 }
 
 </style>
