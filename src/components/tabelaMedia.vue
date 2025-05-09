@@ -53,10 +53,10 @@
                           </thead>
                           <tbody>
                               <tr>
-                                  <td class="aprov" style="background-color: #90eeaa;">Aprovado</td>
+                                  <td class="aprov" >Aprovado</td>
                               </tr>
                               <tr>
-                                  <td class="aprov" style="background-color: #FF6B6B;">Reprovado</td>
+                                  <td class="aprov" >Reprovado</td>
                               </tr>
                               <tr>
                                   <td>Aprovado</td>
@@ -76,7 +76,11 @@
 </template>
 <script>
 export default{
-    name: 'TabelaMedia'
+    name: 'TabelaMedia',
+    methods():{
+        const base1 = periodo1;
+        const 
+    }
 }
 </script>
 <style scoped>
