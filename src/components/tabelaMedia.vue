@@ -2,96 +2,122 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <div class="container">
-        <div class="pesquisa">
-            <input type="search" name="pesquisa" id="pesquisa" placeholder="Nome do aluno ..."><button class="btn-primary btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-              </svg></button>
-        </div>
+            <div class="pesquisa">
+                <input type="search" name="pesquisa" id="pesquisa" placeholder="Nome do aluno ..."><button class="btn-primary btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg></button>
+            </div>
 
-        <div class="materia-title">Inserir notas</div>
-        <div class="contentx">
-        <div class="content">
-            <form action="#" method="post" class="form">
-                <table class="table table-striped-columns">
-                    <thead>
-                        <th>sem</th>
-                        <th>1ª Aval</th>
-                        <th>2ª Aval</th>
-                        <th>3ª Aval</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="sticky-col" v-for="(alunos, index) in alunos" :key="index">1º</td>
-                            <td>
-                                <input
-                                 type="number"
-                                 v-model.number="aluno.nota1"
-                                 min="0"
-                                 max="10"
-                                 step="0.1"
-                                 @input="validarNota($event, aluno, nota1)"
-                                 placeholder="1ª Nota">
-                            </td>
-                            <td><input type="number" id="notas" placeholder="2ª nota" min="0" max="10" step="1"></td>
-                            <td><input type="number" id="notas" placeholder="3ª nota" min="0" max="10" step="1"></td>
-                        </tr>
-                        <tr>
-                            <td class="sticky-col">2º</td>
-                            <td><input type="number" id="notas" placeholder="1ª nota" min="0" max="10" step="1"></td>
-                            <td><input type="number" id="notas" placeholder="2ª nota" min="0" max="10" step="1"></td>
-                            <td><input type="number" id="notas" placeholder="3ª nota" min="0" max="10" step="1"></td>
-                        </tr>
-                        <tr>
-                            <td class="sticky-col">3º</td>
-                            <td><input type="number" id="notas" placeholder="1ª nota" min="0" max="10" step="1"></td>
-                            <td><input type="number" id="notas" placeholder="2ª nota" min="0" max="10" step="1"></td>
-                            <td><input type="number" id="notas" placeholder="3ª nota" min="0" max="10" step="1"></td>
-                        </tr>
-                        <tr>
-                            <td class="sticky-col">4º</td>
-                            <td><input type="number" id="notas" placeholder="1ª nota" min="0" max="10" step="1"></td>
-                            <td><input type="number" id="notas" placeholder="2ª nota" min="0" max="10" step="1"></td>
-                            <td><input type="number" id="notas" placeholder="3ª nota" min="0" max="10" step="1"></td>
-                        </tr>
-                    </tbody>
-                  </table>
-                  <div class="status">
-                      <table class="table table-striped-columns">
-                          <thead>
-                          <tr>Status</tr>
-                          </thead>
-                          <tbody>
-                              <tr v-for="(aluno, index) in alunos" :key="'status' + index">
-                                  <td :class="statusClasse(aluno)" >{{ statusTexto }}</td>
-                              </tr>
-                              <tr>
-                                  <td class="aprov" >Reprovado</td>
-                              </tr>
-                              <tr>
-                                  <td>Aprovado</td>
-                              </tr>
-                              <tr>
-                                  <td>Aprovado</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-            </form>
-            <button class="btn-primary btn">Enviar</button>
+            <div class="materia-title">Inserir notas</div>
+
+            <div class="contentx">
+                <div class="aluno-nom" v-if="alunoSelecionado">
+                    <h3>Aluno: {{ alunoSelecionado.nome }}</h3>
+                </div>
+            <div class="content">
+                <form action="#" method="post" class="form">
+                    <table class="table table-striped-columns">
+                        <thead>
+                            <th>sem</th>
+                            <th>1ª Aval</th>
+                            <th>2ª Aval</th>
+                            <th>3ª Aval</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(aluno, index) in alunos" :key="index">
+                                <td>{{ index + 1 }}</td>
+                                <td>
+                                    <input
+                                    type="number"
+                                    v-model.number="aluno.nota1"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    @input="validarNota($event, aluno, 'nota1')"
+                                    placeholder="1ª Nota"/>
+                                </td>
+                                <td>
+                                    <input
+                                    type="number"
+                                    v-model.number="aluno.nota2"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    @input="validarNota($event, aluno, 'nota2')"
+                                    placeholder="2ª Nota"/>
+                                </td>
+                                <td>
+                                    <input
+                                    type="number"
+                                    v-model.number="aluno.nota3"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    @input="validarNota($event, aluno, 'nota3')"
+                                    placeholder="3ª Nota"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="status">
+                        <table class="table table-striped-columns">
+                            <thead>
+                            <tr>Status</tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(aluno, index) in alunos" :key="'status' + index">
+                                    <td :class="statusClasse(aluno)" >{{ statusTexto (aluno) }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <button class="btn-primary btn">Enviar</button>
+            </div>
+        </div>   
         </div>
-        </div>
-        
-    </div>
-</template>
+    </template>
 <script>
 export default{
     name: 'TabelaMedia',
+    data(){
+        return{
+            alunoSelecionado: null,
+            alunos:[
+                {nota1: null, nota2: null, nota3: null},
+                {nota1: null, nota2: null, nota3: null},
+                {nota1: null, nota2: null, nota3: null},
+                {nota1: null, nota2: null, nota3: null}
+            ]
+        };
+    },
     methods:{
         validarNota(event, aluno, campo){
-            let valor = parseFloat(Math.min(10, Math.mas(0, valor)).toFixed(1))
+            let valor = parseFloat (event.target.value);
+            if(isNaN(valor)){
+                aluno[campo] = null;
+            }else{
+                aluno[campo]= parseFloat(Math.min(10, Math.max(0, valor)).toFixed(1))
+            }
+        },
+        somaNotas(aluno){
+            const notas = [aluno.nota1, aluno.nota2, aluno.nota3];
+            return notas.every(n => n !== null && n !== '') ? notas.reduce((acc, val)=> acc + Number(val), 0) :null;
+        },
+        statusTexto(aluno){
+            const total = this.somaNotas(aluno);
+            if(total === null) return 'Cursando';
+            if(total >=21) return 'Aprovado';
+            return 'Reprovado';
+        },
+        statusClasse(aluno){
+            const total = this.somaNotas(aluno);
+            if(total === null) return 'Cursando';
+            if(total >=21) return 'aprov';
+            return 'reprov';
         }
     }
-}
+};
 </script>
 <style scoped>
 
@@ -176,6 +202,21 @@ font-family: 'Inter',sans-serif;
 }
 .status{
     height: 100%;
+}
+.aprov{
+    background-color: #c7f9cc;
+    color: #1b4332;
+    font-weight: bold;
+}
+.reprov{
+    background-color: #ffccd5;
+    color:#6b0103;
+    font-weight: bold;
+}
+.cursando{
+    background-color: #e9ecef;
+    color: #6c757d;
+    font-weight: italic;
 }
 .btn{
     position: absolute;
