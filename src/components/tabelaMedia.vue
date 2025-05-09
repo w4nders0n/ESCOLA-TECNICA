@@ -21,8 +21,17 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="sticky-col">1º</td>
-                            <td><input type="number" id="notas" placeholder="1ª nota" min="0" max="10" step="1"></td>
+                            <td class="sticky-col" v-for="(alunos, index) in alunos" :key="index">1º</td>
+                            <td>
+                                <input
+                                 type="number"
+                                 v-model.number="aluno.nota1"
+                                 min="0"
+                                 max="10"
+                                 step="0.1"
+                                 @input="validarNota($event, aluno, nota1)"
+                                 placeholder="1ª Nota">
+                            </td>
                             <td><input type="number" id="notas" placeholder="2ª nota" min="0" max="10" step="1"></td>
                             <td><input type="number" id="notas" placeholder="3ª nota" min="0" max="10" step="1"></td>
                         </tr>
@@ -49,11 +58,11 @@
                   <div class="status">
                       <table class="table table-striped-columns">
                           <thead>
-                          <th>Status</th>
+                          <tr>Status</tr>
                           </thead>
                           <tbody>
-                              <tr>
-                                  <td class="aprov" >Aprovado</td>
+                              <tr v-for="(aluno, index) in alunos" :key="'status' + index">
+                                  <td :class="statusClasse(aluno)" >{{ statusTexto }}</td>
                               </tr>
                               <tr>
                                   <td class="aprov" >Reprovado</td>
@@ -77,9 +86,10 @@
 <script>
 export default{
     name: 'TabelaMedia',
-    methods():{
-        const base1 = periodo1;
-        const 
+    methods:{
+        validarNota(event, aluno, campo){
+            let valor = parseFloat(Math.min(10, Math.mas(0, valor)).toFixed(1))
+        }
     }
 }
 </script>
