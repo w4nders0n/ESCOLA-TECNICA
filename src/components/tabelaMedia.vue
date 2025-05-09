@@ -3,18 +3,18 @@
 
     <div class="container">
             <div class="pesquisa">
-                <input type="search" name="pesquisa" id="pesquisa" placeholder="Nome do aluno ..."><button class="btn-primary btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <input type="search" class="form-control" id="pesquisa" placeholder="Nome do aluno ..."><button class="btn-primary btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg></button>
             </div>
 
             <div class="materia-title">Inserir notas</div>
 
-            <div class="contentx">
-                <div class="aluno-nom" v-if="alunoSelecionado">
+            <div class="content">
+                <div class="aluno-nome" v-if="alunoSelecionado">
                     <h3>Aluno: {{ alunoSelecionado.nome }}</h3>
                 </div>
-            <div class="content">
+            <div class="tabela">
                 <form action="#" method="post" class="form">
                     <table class="table table-striped-columns">
                         <thead>
@@ -131,135 +131,33 @@ box-sizing: border-box;
 font-family: 'Inter',sans-serif;
 }
 .container{
-    width: 100vw;
-    height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Inter', sans-serif;
-    flex-direction: column;
-}
-.pesquisa{
-    display: flex;
     width: 100%;
-    padding: 30px;
-    gap: 0px;
-    align-items: center;
-    justify-content: center;
-}
-#pesquisa{
-    padding: 0.4rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    background-color: #f5f5f5;
-}
-#pesquisa::placeholder{
-    color: rgba(63, 63, 63, 0.507);
-    font-weight: 600;
-}
-.pesquisa button{
-    position: static;
-    border-radius: 3px;
-    background-color: #1D8260;
-    border: none;
-    padding: 7px 14px;
-}
-.pesquisa svg{
-    fill: #fff;
-}
-
-.materia-title{
-    text-align: center;
-    font-weight:700;
-    font-size:35px;
-    font-family: 'Poppins';
-    margin-bottom: 30px;
-}
-.contentx{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 500px;
-    min-height: 350px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px #c3c3c3;
-    border-radius:8px ;
+    height: auto;
 }
 .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:80%;
+    position: relative;
+    height: 25rem;
+    background-color: bisque;
+    padding: 30px 15px;
+}
+.tabela{
+    display:flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    padding: 30px 15px;
-    display: flex;
-    position: relative;
 }
 .form{
-    height: 15rem;
-    width: 100%;
     display: flex;
- 
-}
-.status{
-    height: 100%;
-}
-.aprov{
-    background-color: #c7f9cc;
-    color: #1b4332;
-    font-weight: bold;
-}
-.reprov{
-    background-color: #ffccd5;
-    color:#6b0103;
-    font-weight: bold;
-}
-.cursando{
-    background-color: #e9ecef;
-    color: #6c757d;
-    font-weight: italic;
-}
-.btn{
-    position: absolute;
-    bottom: 5px;
-    left: 200px;
-    right: 200px;
+    margin: 0 auto;
 }
 
-.table{
-    width: 100%;
-    height: 100%;
-    text-align: center;
-}
-.table input{
-    width: 70px;
-    height: 20px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #333;
-    font-weight: 600;
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button{
-    -webkit-animation: none;
-    margin: 0;
-}
-
-@media(max-width:768px){
-    .contentx{
-        width: 360px;
-        height: 33rem;
-        overflow-x:scroll ;
-        padding-top: 0px;
-    }
-    .form{
-        height: 25rem
-    
-    }
-    .btn{
-        left: 100px;
-        right: 100px;
-        bottom: 10px;
-    }
-}
 </style>
